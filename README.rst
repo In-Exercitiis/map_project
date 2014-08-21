@@ -15,8 +15,8 @@ move the map to the nearest soccer field.
 Notes
 =====
 
-`<https://developers.google.com/maps/documentation/embed/start>_`
+https://developers.google.com/maps/documentation/embed/start
 
-`<https://developers.google.com/maps/documentation/embed/guide>_`
+https://developers.google.com/maps/documentation/embed/guide
 
-`<https://google-developers.appspot.com/maps/documentation/javascript/3.exp/reference>_`
+https://google-developers.appspot.com/maps/documentation/javascript/3.exp/reference>
