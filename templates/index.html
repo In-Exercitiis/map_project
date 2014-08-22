@@ -33,13 +33,6 @@ function initialize() {
       var pos = new google.maps.LatLng(position.coords.latitude,
                                        position.coords.longitude);
 
-/*     DELETE ME if not needed
-        var infowindow = new google.maps.InfoWindow({
-        map: map,
-        position: pos,
-        content: 'Location found using HTML5.'
-      }); */
-
       map.setCenter(pos);
     }, function() {
       handleNoGeolocation(true);
@@ -51,6 +44,8 @@ function initialize() {
 
   var findNearestSoccerFieldDiv = document.createElement('div');
   var findNearestSoccerFieldControl = new FindNearestSoccerField(findNearestSoccerFieldDiv, map)
+  findNearestSoccerFieldDiv.index = 1;
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(findNearestSoccerFieldDiv);
 }
 
 function handleNoGeolocation(errorFlag) {
@@ -66,7 +61,6 @@ function handleNoGeolocation(errorFlag) {
     content: content
   };
 
-//  var infowindow = new google.maps.InfoWindow(options);
   map.setCenter(options.position);
 }
 
@@ -101,7 +95,6 @@ function FindNearestSoccerField(controlDiv, map) {
     map.setCenter(chicago)
   });
 }
-
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
