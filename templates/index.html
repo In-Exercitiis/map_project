@@ -11,29 +11,30 @@
         padding: 0px
       }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 
     <script>
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see a blank space instead of the map, this
-// is probably because you have denied permission for location sharing.
-
 var map;
+var infowindow;
 
 function initialize() {
   var mapOptions = {
-    zoom: 6
+    zoom: 11
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
+  infowindow = new google.maps.InfoWindow();
 
   // Try HTML5 geolocation
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = new google.maps.LatLng(position.coords.latitude,
                                        position.coords.longitude);
-
       map.setCenter(pos);
+      var findNearestSoccerFieldDiv = document.createElement('div');
+      var findNearestSoccerFieldControl = new FindNearestSoccerField(findNearestSoccerFieldDiv, map)
+      findNearestSoccerFieldDiv.index = 1;
+      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(findNearestSoccerFieldDiv);
     }, function() {
       handleNoGeolocation(true);
     });
@@ -41,11 +42,6 @@ function initialize() {
     // Browser doesn't support Geolocation
     handleNoGeolocation(false);
   }
-
-  var findNearestSoccerFieldDiv = document.createElement('div');
-  var findNearestSoccerFieldControl = new FindNearestSoccerField(findNearestSoccerFieldDiv, map)
-  findNearestSoccerFieldDiv.index = 1;
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(findNearestSoccerFieldDiv);
 }
 
 function handleNoGeolocation(errorFlag) {
@@ -89,10 +85,35 @@ function FindNearestSoccerField(controlDiv, map) {
   controlText.innerHTML = 'Nearest Soccer Field';
   controlUI.appendChild(controlText);
 
-  // Setup the click event listeners: simply set the map to
-  // Chicago
+  var placeService = new google.maps.places.PlacesService(map);
+  var currentLocation = map.getCenter();
+  var request = {
+    location: currentLocation,
+    keyword: 'soccer',
+    radius: 5000, //5 km radius search
+    types: ['park']
+  };
   google.maps.event.addDomListener(controlUI, 'click', function() {
-    map.setCenter(chicago)
+    placeService.nearbySearch(request, PlaceMarkerCallback);
+  });
+}
+
+function PlaceMarkerCallback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    createMarker(results[0]);  //Just want the first soccer field we find
+  }
+}
+
+function createMarker(place) {
+  var placeLoc = place.geometry.location;
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location
+  });
+
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent(place.name);
+    infowindow.open(map, this);
   });
 }
 
