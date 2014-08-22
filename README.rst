@@ -30,3 +30,7 @@ https://google-developers.appspot.com/maps/documentation/javascript/examples/con
 **Python flask documentation**
 
 http://opentechschool.github.io/python-flask/core/files-templates.html
+
+**Testing utilities**
+
+https://addons.mozilla.org/en-US/firefox/addon/geolocater/
