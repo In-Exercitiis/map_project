@@ -19,4 +19,17 @@ https://developers.google.com/maps/documentation/embed/start
 
 https://developers.google.com/maps/documentation/embed/guide
 
-https://google-developers.appspot.com/maps/documentation/javascript/3.exp/reference>
+https://google-developers.appspot.com/maps/documentation/javascript/3.exp/reference
+
+Specific Notes
+===========
+
+https://google-developers.appspot.com/maps/documentation/javascript/examples/map-geolocation
+
+https://google-developers.appspot.com/maps/documentation/javascript/examples/map-simple-async
+
+https://google-developers.appspot.com/maps/documentation/javascript/examples/control-custom
+
+https://google-developers.appspot.com/maps/documentation/javascript/examples/control-custom-state
+
+http://opentechschool.github.io/python-flask/core/files-templates.html
