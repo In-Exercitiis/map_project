@@ -15,7 +15,7 @@ https://developers.google.com/maps/documentation/embed/guide
 https://google-developers.appspot.com/maps/documentation/javascript/3.exp/reference
 
 Specific Notes
-===========
+==============
 
 **Google maps documentation**
 
@@ -34,3 +34,11 @@ http://opentechschool.github.io/python-flask/core/files-templates.html
 **Testing utilities**
 
 https://addons.mozilla.org/en-US/firefox/addon/geolocater/
+
+Next Stage
+==========
+
+* Clear button to clear markers
+
+* Simple Android app
+
